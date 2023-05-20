@@ -1,5 +1,11 @@
 var startGame = document.getElementById("startGame");
 var questionsArea = document.getElementById("questionsArea");
+var questionHeader = document.getElementById("questionHeader");
+var questionOption1 = document.getElementById("option1");
+var questionOption2 = document.getElementById("option2");
+var questionOption3 = document.getElementById("option3");
+var questionOption4 = document.getElementById("option4");
+
 var scores = document.getElementById("scores");
 var timer =document.getElementById("timer");
 
@@ -36,6 +42,9 @@ startGame.addEventListener("click", function() {
     timer.style.display = "flex", "justify-content: center";
     gameStarted =true;
 
+    showCountdownToPage();
+    showQuestionsToPage();
+
     var interval = setInterval(function() {
         if (!gameStarted) {
             return;
@@ -54,4 +63,12 @@ startGame.addEventListener("click", function() {
 
 function showCountdownToPage() {
     timer.textContent = "Time Remaining " + countdown;
+}
+
+function showQuestionsToPage() {
+    questionHeader.textContent = questions[0].title;
+    questionOption1.textContent= questions[0].answers[0];
+    questionOption2.textContent= questions[0].answers[1];
+    questionOption3.textContent= questions[0].answers[2];
+    questionOption4.textContent= questions[0].answers[3];
 }
