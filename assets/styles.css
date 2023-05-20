@@ -3,7 +3,7 @@ body{
     background-color: rgb(243, 228, 201);
 }
 
-.TitleCard{
+.titleCard{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -28,13 +28,23 @@ p{
     padding-top: 20px;
 }
 
-.QuizSection{
+.quizSection{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    padding-top: 40px;
+    padding-top: 20px;
     padding-right: 20px;
     padding-left: 20px;
+}
+
+#questionsArea {
+    display: none;
+    
+}
+
+#timer{
+    display: flex;
+    justify-content: center;
 }
 
 button{
@@ -43,11 +53,16 @@ button{
   border-radius: 30px;
   color:white;
   display: inline-block;
+  justify-content: space-evenly;
   font-size: 20px;
-  margin: 15px 15px 15px 20px;
+  margin: 15px 15px 15px 400px;
   padding: 15px 25px;
   text-align: center;
   cursor: pointer;
+}
+
+#scores{
+
 }
 
 button:hover{

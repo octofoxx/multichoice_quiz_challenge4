@@ -8,7 +8,7 @@
     <link rel ="stylesheet" href ="assets/styles.css"/>
 </head>
 <body>
-    <div class ="TitleCard">
+    <div class ="titleCard">
         <header>
             <h1>
                 Javascript Quiz
@@ -20,10 +20,21 @@
             </p>
         </header>
     </div>
-    <main class = "QuizSection">
-        <button id="startGame">Start Quiz</button>
-        <button id="Scores">High Scores</button>
+    <main class = "quizSection">
+        <div id =questionsArea>
+            <h2>First Question</h2>
+            <br>
+            <ol type="A">
+                <li>First Answer</li>
+                <li>Second Answer</li>
+                <li>Third Answer</li>
+                <li>Fourth Answer</li>
+            </ol>
+        </div>
     </main>
+    <div id="timer"></div>
+    <button id="startGame">Start Quiz</button>
+    <button id="scores">High Scores</button>
  <script src="/assets/script.js"></script>   
 </body>
 </html>
