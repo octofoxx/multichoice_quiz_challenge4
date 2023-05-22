@@ -72,3 +72,14 @@ function showQuestionsToPage() {
     questionOption3.textContent= questions[0].answers[2];
     questionOption4.textContent= questions[0].answers[3];
 }
+
+questionsArea.addEventListener("click",function(event) {
+    var clicked = event.target
+    var correctAnswer = questions.correct
+
+        if(clicked ==correctAnswer) {
+            logCheck;
+        }
+        
+    }
+);
