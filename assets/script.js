@@ -31,6 +31,7 @@ var questions= [
 
 var gameStarted = false;
 var countdown = 100;
+var currentQuestion=0;
 
 var logCheck = function(){
     console.log ("Hello, World")
@@ -66,20 +67,26 @@ function showCountdownToPage() {
 }
 
 function showQuestionsToPage() {
-    questionHeader.textContent = questions[0].title;
-    questionOption1.textContent= questions[0].answers[0];
-    questionOption2.textContent= questions[0].answers[1];
-    questionOption3.textContent= questions[0].answers[2];
-    questionOption4.textContent= questions[0].answers[3];
+    questionHeader.textContent = questions[currentQuestion].title;
+    questionOption1.textContent= questions[currentQuestion].answers[0];
+    questionOption2.textContent= questions[currentQuestion].answers[1];
+    questionOption3.textContent= questions[currentQuestion].answers[2];
+    questionOption4.textContent= questions[currentQuestion].answers[3];
 }
+//To-Do: check if user clicked button that is equal to correct answer. If it was correct, load next question into page.
 
 questionsArea.addEventListener("click",function(event) {
-    var clicked = event.target
-    var correctAnswer = questions.correct
+    var clicked = event.target.textContent
+    var correctAnswer = questions[currentQuestion].correct
 
         if(clicked ==correctAnswer) {
-            logCheck;
+            logCheck();
         }
         
     }
 );
+// If not, then remove 10 seconds from timer. 
+
+// After last question is answered, end timer. save time in local storage, give prompt for user to save name with time and display into high scores screen. 
+
+// make high score button display high score screen.
