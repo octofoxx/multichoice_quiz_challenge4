@@ -42,6 +42,10 @@ p{
     
 }
 
+#scorePage{
+    display: none;
+}
+
 #timer{
     display: flex;
     justify-content: center;
