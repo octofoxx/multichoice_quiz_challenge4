@@ -114,12 +114,17 @@ questionsArea.addEventListener("click",function(event) {
         
 });
 
-//saved the users name and score into local storage
+//saved the users name and score into local storage upon submit button being pressed.
 submit.addEventListener("click",function(){
     var scoreInfo = {
         name: playerName.value.trim(),
         points: timer.value,}
-    localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo))
+    localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo)),
+    scorePage.style.display ="none",
+    startGame.style.display="block",
+    scoresButton.style.display ="block",
+    timer.style.display = "none",
+    countdown= 100
 });
 
 //event listener for when the Go back button is clicked. Resets the timer and page back to start.
