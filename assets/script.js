@@ -7,8 +7,9 @@ var questionOption1 = document.getElementById("option1");
 var questionOption2 = document.getElementById("option2");
 var questionOption3 = document.getElementById("option3");
 var questionOption4 = document.getElementById("option4");
-var scores = document.getElementById("scores");
-var timer =document.getElementById("timer");
+var scoresButton = document.getElementById("scoresButton");
+var timer = document.getElementById("timer");
+var scorePage = document.getElementById("scorePage");
 
 var questions= [
    {
@@ -40,12 +41,15 @@ var logCheck = function(){
     console.log ("Hello, World")
 }
 
+//sets the interval as undefined so its available to all scopes
+var interval
 /*when start button is clicked, this function runs to bring up questions,
 hide the start button, start the timer*/
 
 startGame.addEventListener("click", function() {
     questionsArea.style.display = "block";
     startGame.style.display = "none";
+    scoresButton.style.display = "none";
     timer.style.display = "flex", "justify-content: center";
     gameStarted =true;
 
@@ -53,7 +57,7 @@ startGame.addEventListener("click", function() {
     showQuestionsToPage();
 
  //this function makes sure timer stops when it hits zero as well as run the timer to decrement    
-    var interval = setInterval(function() {
+     interval = setInterval(function() {
         if (!gameStarted) {
             return;
         }
@@ -86,12 +90,13 @@ questionsArea.addEventListener("click",function(event) {
     var correctAnswer = questions[currentQuestion].correct
 
         if(clicked ==correctAnswer) {
-           if(currentQuestion<questions.length) {
+           if(currentQuestion<questions.length-1) {
             currentQuestion++;
             showQuestionsToPage();
            }
            else {
             // stop timer and show scorepage
+            clearInterval(interval);
             logCheck();
            }
         
