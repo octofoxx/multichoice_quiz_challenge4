@@ -8,8 +8,11 @@ var questionOption2 = document.getElementById("option2");
 var questionOption3 = document.getElementById("option3");
 var questionOption4 = document.getElementById("option4");
 var scoresButton = document.getElementById("scoresButton");
+var playerName = document.getElementById("name");
 var timer = document.getElementById("timer");
 var scorePage = document.getElementById("scorePage");
+var submit = document.getElementById("submit");
+var goBack = document.getElementById("return");
 
 var questions= [
    {
@@ -43,8 +46,9 @@ var logCheck = function(){
 
 //sets the interval as undefined so its available to all scopes
 var interval
+
 /*when start button is clicked, this function runs to bring up questions,
-hide the start button, start the timer*/
+hide the start button, show the timer*/
 
 startGame.addEventListener("click", function() {
     questionsArea.style.display = "block";
@@ -56,7 +60,7 @@ startGame.addEventListener("click", function() {
     showCountdownToPage();
     showQuestionsToPage();
 
- //this function makes sure timer stops when it hits zero as well as run the timer to decrement    
+ //this function starts the timer's countdown and stops when it hits zero. If it hits zero,hides questions and displays the ScorePage.    
      interval = setInterval(function() {
         if (!gameStarted) {
             return;
@@ -65,6 +69,7 @@ startGame.addEventListener("click", function() {
 
         if (countdown <= 0) {
             clearInterval(interval);
+            questionsArea.style.display ="none";
             scorePage.style.display = "block";
         }
     
@@ -94,26 +99,36 @@ questionsArea.addEventListener("click",function(event) {
             currentQuestion++;
             showQuestionsToPage();
            }
+
            else {
-            // stop timer and show scorepage
+            // stop timer and show scorePage
             clearInterval(interval);
             questionsArea.style.display ="none";
             scorePage.style.display = "block";
-            
            }
-        
         }
 
         else {
         countdown -=10;
         }
-
-
         
-    }
-);
- 
-//save time in local storage, 
-//give prompt for user to save name with time and display into high scores screen. 
+});
+
+//saved the users name and score into local storage
+submit.addEventListener("click",function(){
+    var scoreInfo = {
+        name: playerName.value.trim(),
+        points: timer.value,}
+    localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo))
+});
+
+//event listener for when the Go back button is clicked. Resets the timer and page back to start.
+goBack.addEventListener("click",function(){
+    scorePage.style.display ="none",
+    startGame.style.display="block",
+    scoresButton.style.display ="block",
+    timer.style.display = "none",
+    countdown= 100
+});
 
 // make high score button display high score screen.
