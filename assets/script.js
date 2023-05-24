@@ -65,7 +65,7 @@ startGame.addEventListener("click", function() {
 
         if (countdown <= 0) {
             clearInterval(interval);
-
+            scorePage.style.display = "block";
         }
     
         showCountdownToPage();
@@ -97,7 +97,9 @@ questionsArea.addEventListener("click",function(event) {
            else {
             // stop timer and show scorepage
             clearInterval(interval);
-            logCheck();
+            questionsArea.style.display ="none";
+            scorePage.style.display = "block";
+            
            }
         
         }
@@ -110,8 +112,7 @@ questionsArea.addEventListener("click",function(event) {
         
     }
 );
-
-// After last question is answered, end timer. 
+ 
 //save time in local storage, 
 //give prompt for user to save name with time and display into high scores screen. 
 
