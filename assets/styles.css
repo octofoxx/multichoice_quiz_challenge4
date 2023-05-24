@@ -46,6 +46,10 @@ p{
     display: none;
 }
 
+#highScores{
+    display: none;
+}
+
 #timer{
     display: flex;
     justify-content: center;

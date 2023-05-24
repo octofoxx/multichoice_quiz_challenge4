@@ -13,6 +13,8 @@ var timer = document.getElementById("timer");
 var scorePage = document.getElementById("scorePage");
 var submit = document.getElementById("submit");
 var goBack = document.getElementById("return");
+var highScores =document.getElementById("highScores");
+var highScoreList=document.getElementById("highScoreList");
 
 var questions= [
    {
@@ -46,6 +48,9 @@ var logCheck = function(){
 
 //sets the interval as undefined so its available to all scopes
 var interval
+
+var scoreInfo= "";
+
 
 /*when start button is clicked, this function runs to bring up questions,
 hide the start button, show the timer*/
@@ -114,26 +119,42 @@ questionsArea.addEventListener("click",function(event) {
         
 });
 
+function saveScore(){
+    var scoreInfo = {
+    name: playerName.value.trim(),
+    points: countdown,}
+localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo))
+    }
 //saved the users name and score into local storage upon submit button being pressed.
 submit.addEventListener("click",function(){
-    var scoreInfo = {
-        name: playerName.value.trim(),
-        points: timer.value,}
-    localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo)),
+    saveScore();
     scorePage.style.display ="none",
     startGame.style.display="block",
     scoresButton.style.display ="block",
     timer.style.display = "none",
-    countdown= 100
+    countdown= 100,
+    currentQuestion=0
 });
 
 //event listener for when the Go back button is clicked. Resets the timer and page back to start.
 goBack.addEventListener("click",function(){
     scorePage.style.display ="none",
     startGame.style.display="block",
+    highScores.style.display = "none",
     scoresButton.style.display ="block",
     timer.style.display = "none",
-    countdown= 100
+    countdown= 100,
+    currentQuestion=0
 });
 
-// make high score button display high score screen.
+scoresButton.addEventListener("click",function(){
+    highScores.style.display ="block",
+    startGame.style.display="none",
+    scoresButton.style.display ="none",
+    localStorage.getItem("scoreInfo");
+   var displayedScore= highScoreList.innerHTML =scoreInfo;
+   if (displayedScore !==""){
+    scoreInfo = displayedScore;
+   }
+    
+});
