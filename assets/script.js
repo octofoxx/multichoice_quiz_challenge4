@@ -49,9 +49,6 @@ var logCheck = function(){
 //sets the interval as undefined so its available to all scopes
 var interval
 
-var scoreInfo= "";
-
-
 /*when start button is clicked, this function runs to bring up questions,
 hide the start button, show the timer*/
 
@@ -146,15 +143,12 @@ goBack.addEventListener("click",function(){
     countdown= 100,
     currentQuestion=0
 });
+var displayedScore =localStorage.getItem("scoreInfo");
 
 scoresButton.addEventListener("click",function(){
     highScores.style.display ="block",
     startGame.style.display="none",
     scoresButton.style.display ="none",
-    localStorage.getItem("scoreInfo");
-   var displayedScore= highScoreList.innerHTML =scoreInfo;
-   if (displayedScore !==""){
-    scoreInfo = displayedScore;
-   }
+    highScoreList.innerHTML =displayedScore;
     
 });
