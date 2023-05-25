@@ -122,6 +122,12 @@ function saveScore(){
     points: countdown,}
 localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo))
     }
+
+function showScore(){
+    var displayedScore =JSON.parse(localStorage.getItem("scoreInfo"));
+    highScoreList.innerHTML ="name " + displayedScore.name + " score: " +displayedScore.points;
+    }
+
 //saved the users name and score into local storage upon submit button being pressed.
 submit.addEventListener("click",function(){
     saveScore();
@@ -143,12 +149,12 @@ goBack.addEventListener("click",function(){
     countdown= 100,
     currentQuestion=0
 });
-var displayedScore =localStorage.getItem("scoreInfo");
+var displayedScore =JSON.parse(localStorage.getItem("scoreInfo"));
 
 scoresButton.addEventListener("click",function(){
+    showScore();
     highScores.style.display ="block",
     startGame.style.display="none",
-    scoresButton.style.display ="none",
-    highScoreList.innerHTML =displayedScore;
-    
+    scoresButton.style.display ="none"
+   
 });
