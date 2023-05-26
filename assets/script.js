@@ -33,7 +33,20 @@ var questions= [
     title: "What is 'API' an acronym for?",
     answers: ["Average Processing Interval","Annual Programmer's Invitational","Application Programming Interface","Accounted Per Index"],
     correct: "Application Programming Interface"
+   },
+
+   {
+    title: "Objects can store___",
+    answers: ["Arrays","Functions","Methods","All of the above"],
+    correct: "All of the above"
+   },
+
+   {
+    title: "Arrays are___indexed",
+    answers: ["first","last","zero","quarter"],
+    correct: "zero"
    }
+  
 ];
 
 var gameStarted = false;
@@ -42,9 +55,6 @@ var countdown = 100;
 //needed to make cycling new questions into questionArea possible
 var currentQuestion=0;
 
-var logCheck = function(){
-    console.log ("Hello, World")
-}
 
 //sets the interval as undefined so its available to all scopes
 var interval
@@ -91,11 +101,11 @@ function showQuestionsToPage() {
     questionOption3.textContent= questions[currentQuestion].answers[2];
     questionOption4.textContent= questions[currentQuestion].answers[3];
 }
-
+//adds the event listener for when any button is clicked during the quiz
 questionsArea.addEventListener("click",function(event) {
     var clicked = event.target.textContent
     var correctAnswer = questions[currentQuestion].correct
-
+        //if correct is clicked, moves to next question as long as there is one and populates it
         if(clicked ==correctAnswer) {
            if(currentQuestion<questions.length-1) {
             currentQuestion++;
@@ -109,20 +119,20 @@ questionsArea.addEventListener("click",function(event) {
             scorePage.style.display = "block";
            }
         }
-
+        //deducts 10 seconds from the timer for wrong answers
         else {
         countdown -=10;
         }
         
 });
-
+//puts the remaining time and the player's name into local storage
 function saveScore(){
     var scoreInfo = {
     name: playerName.value.trim(),
     points: countdown,}
 localStorage.setItem("scoreInfo",JSON.stringify(scoreInfo))
     }
-
+//prints the player's name and score into the high scores section
 function showScore(){
     var displayedScore =JSON.parse(localStorage.getItem("scoreInfo"));
     highScoreList.innerHTML ="name " + displayedScore.name + " score: " +displayedScore.points;
